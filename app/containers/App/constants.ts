@@ -13,5 +13,5 @@ enum ActionTypes {
   LOAD_REPOS_ERROR = 'jda/App/LOAD_REPOS_ERROR',
   SET_APP_LOADING = 'jda/App/SET_APP_LOADING',
 }
-export const API_BASE_URL = 'http://18.220.219.235:8888'; // TODO: move to env
+export const API_BASE_URL = 'http://18.217.43.249:8888'; // TODO: move to env
 export default ActionTypes;
