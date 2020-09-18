@@ -83,7 +83,7 @@ function Gallery(props: Props) {
         <meta name="description" content="Description of Gallery" />
       </Helmet>
       {/* <FormattedMessage {...messages.header} /> */}
-      <div>
+      <div className="header-wrapper">
         <div className="page-title">
           <h2>Photos</h2>
         </div>
