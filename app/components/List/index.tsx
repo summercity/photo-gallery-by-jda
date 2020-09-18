@@ -7,21 +7,12 @@ import React, { memo } from 'react';
 import { Card, Row, Col } from 'antd';
 import { Image } from '../../containers/Gallery/types';
 import LoadingIndicator from '../LoadingIndicator';
-
-// import styled from 'styles/styled-components';
+import '../../styles/Gallery.css';
 
 interface Props {
   images: Image[];
   loading: boolean;
 }
-
-const colStyles = {
-  flexBasis: '18%',
-  // outline: '1px solid red',
-  minWidth: '20%',
-  marginTop: '20px',
-  marginBottom: '30px',
-};
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function List(props: Props) {
@@ -30,7 +21,7 @@ function List(props: Props) {
     <div>
       <Row gutter={16}>
         {images?.map((image, i) => (
-          <Col key={`col-${image}-${i}`} style={{ ...colStyles }}>
+          <Col key={`col-${image}-${i}`} className="ant-custom-col">
             <Card
               className="custom-card"
               key={`card-${image}-${i}`}

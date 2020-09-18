@@ -85,6 +85,26 @@
   z-index: 1000 !important;
 }
 
+/* # Desktop */
+@media only screen and (min-width: 1500px) {
+  .ant-custom-col {
+    flex-basis: 18%;
+    /* outline: 1px solid red; */
+    min-width: 20%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 1400px) {
+  .ant-custom-col {
+    flex-basis: 18%;
+    /* outline: 1px solid blue; */
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+}
+
 /* Loader ======================================================================*/
 .lds-hourglass {
   display: inline-block;
