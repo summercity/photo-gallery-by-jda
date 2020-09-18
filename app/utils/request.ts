@@ -37,6 +37,12 @@ function checkStatus(response: Response) {
   throw error;
 }
 
+export function getFormData(object: any) {
+  const formData = new FormData();
+  Object.keys(object).forEach(key => formData.append(key, object[key]));
+  return formData;
+}
+
 /**
  * Requests a URL, returning a promise
  *

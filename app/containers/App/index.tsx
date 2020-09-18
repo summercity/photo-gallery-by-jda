@@ -7,21 +7,23 @@
  */
 
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styles/styled-components';
 import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
+import { createStructuredSelector } from 'reselect';
 
-import HomePage from 'containers/HomePage/Loadable';
-import FeaturePage from 'containers/FeaturePage/Loadable';
+// import PhotoUploader from 'containers/PhotoUploader/Loadable';
+import Gallery from 'containers/Gallery';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Header from 'components/Header';
 import Footer from 'components/Footer';
+import LoadingIndicatorOverlay from 'components/LoadingIndicatorOverlay';
+import { makeSelectLoading, makeSelectError } from './selectors';
 
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
   margin: 0 auto;
   display: flex;
   min-height: 100%;
@@ -29,19 +31,24 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
+const stateSelector = createStructuredSelector({
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+});
+
 function App() {
+  const { loading, error } = useSelector(stateSelector);
   return (
     <AppWrapper>
       <Helmet
-        titleTemplate="%s - React.js Boilerplate"
+        titleTemplate="%s -Just another app by JDA"
         defaultTitle="React.js Boilerplate"
       >
-        <meta name="description" content="A React.js Boilerplate application" />
+        <meta name="description" content="Photo Gallery by - JDA" />
       </Helmet>
-      <Header />
+      <LoadingIndicatorOverlay loading={loading} />
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/features" component={FeaturePage} />
+        <Route exact path="/" component={Gallery} />
         <Route component={NotFoundPage} />
       </Switch>
       <Footer />

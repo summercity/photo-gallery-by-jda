@@ -1,3 +1,4 @@
+import 'antd/dist/antd.css';
 import * as styledComponents from 'styled-components';
 
 // theme.ts

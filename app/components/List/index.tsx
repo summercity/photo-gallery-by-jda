@@ -1,33 +1,52 @@
-import * as React from 'react';
+/**
+ *
+ * List
+ *
+ */
+import React, { memo } from 'react';
+import { Card, Row, Col } from 'antd';
+import { Image } from '../../containers/Gallery/types';
+import LoadingIndicator from '../LoadingIndicator';
 
-import Ul from './Ul';
-import Wrapper from './Wrapper';
-import { Repo } from '../../containers/RepoListItem/types';
+// import styled from 'styles/styled-components';
 
 interface Props {
-  component: React.ComponentType<any>;
-  items?: Repo[];
+  images: Image[];
+  loading: boolean;
 }
 
+const colStyles = {
+  flexBasis: '18%',
+  // outline: '1px solid red',
+  minWidth: '20%',
+  marginTop: '20px',
+  marginBottom: '30px',
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function List(props: Props) {
-  const ComponentToRender = props.component;
-  let content = (<div />) as JSX.Element | JSX.Element[];
-
-  // If we have items, render them
-  if (props.items) {
-    content = props.items.map(item => (
-      <ComponentToRender key={`item-${item.id}`} item={item} />
-    ));
-  } else {
-    // Otherwise render a single component
-    content = <ComponentToRender />;
-  }
-
+  const { images, loading } = props;
   return (
-    <Wrapper>
-      <Ul>{content}</Ul>
-    </Wrapper>
+    <div>
+      <Row gutter={16}>
+        {images?.map((image, i) => (
+          <Col key={`col-${image}-${i}`} style={{ ...colStyles }}>
+            <Card
+              className="custom-card"
+              key={`card-${image}-${i}`}
+              bordered={false}
+              hoverable
+            >
+              {loading && <LoadingIndicator />}
+              <img className="gallery-img" alt={image.name} src={image.raw} />
+              <div className="card-details-text">{image.name}</div>
+              <div className="card-details-text">{image.album}</div>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </div>
   );
 }
 
-export default List;
+export default memo(List);

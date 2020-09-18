@@ -8,3 +8,6 @@ export const reposLoaded = (repos: Repo[], username: string) =>
   action(ActionTypes.LOAD_REPOS_SUCCESS, { repos: repos, username: username });
 export const repoLoadingError = (error: object) =>
   action(ActionTypes.LOAD_REPOS_ERROR, error);
+
+export const setLoadingAppAction = (payload: boolean) =>
+  action(ActionTypes.SET_APP_LOADING, payload);

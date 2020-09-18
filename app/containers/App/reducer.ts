@@ -42,6 +42,8 @@ function appReducer(
         loading: false,
         ...rest,
       };
+    case ActionTypes.SET_APP_LOADING:
+      return { ...state, loading: action.payload };
     default:
       return state;
   }

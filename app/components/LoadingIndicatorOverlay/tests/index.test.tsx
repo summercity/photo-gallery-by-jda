@@ -1,6 +1,6 @@
 /**
  *
- * Tests for List
+ * Tests for LoadingIndicatorOverlay
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -11,15 +11,15 @@ import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import List from '../index';
+import LoadingIndicatorOverlay from '../index';
 import { DEFAULT_LOCALE } from '../../../locales';
 
-describe('<List />', () => {
+describe('<LoadingIndicatorOverlay />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
     render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <List />
+        <LoadingIndicatorOverlay />
       </IntlProvider>,
     );
     expect(spy).not.toHaveBeenCalled();
@@ -39,7 +39,7 @@ describe('<List />', () => {
       container: { firstChild },
     } = render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <List />
+        <LoadingIndicatorOverlay />
       </IntlProvider>,
     );
     expect(firstChild).toMatchSnapshot();

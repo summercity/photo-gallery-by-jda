@@ -1,6 +1,6 @@
 /**
  *
- * Tests for List
+ * Tests for Gallery
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -9,18 +9,27 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
-// import 'jest-dom/extend-expect'; // add some helpful assertions
+import { Provider } from 'react-redux';
+import history from 'utils/history';
 
-import List from '../index';
+import Gallery from '../index';
 import { DEFAULT_LOCALE } from '../../../locales';
+import configureStore from '../../../configureStore';
+describe('<Gallery />', () => {
+  let store;
 
-describe('<List />', () => {
+  beforeEach(() => {
+    store = configureStore({}, history);
+  });
+
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
     render(
-      <IntlProvider locale={DEFAULT_LOCALE}>
-        <List />
-      </IntlProvider>,
+      <Provider store={store}>
+        <IntlProvider locale={DEFAULT_LOCALE}>
+          <Gallery />
+        </IntlProvider>
+      </Provider>,
     );
     expect(spy).not.toHaveBeenCalled();
   });
@@ -38,9 +47,11 @@ describe('<List />', () => {
     const {
       container: { firstChild },
     } = render(
-      <IntlProvider locale={DEFAULT_LOCALE}>
-        <List />
-      </IntlProvider>,
+      <Provider store={store}>
+        <IntlProvider locale={DEFAULT_LOCALE}>
+          <Gallery />
+        </IntlProvider>
+      </Provider>,
     );
     expect(firstChild).toMatchSnapshot();
   });
